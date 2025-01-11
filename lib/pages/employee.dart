@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_app/service/database.dart';
+import 'package:random_string/random_string.dart';
 
 class Employee extends StatefulWidget {
   const Employee({super.key});
@@ -97,28 +100,28 @@ class _EmployeeState extends State<Employee> {
             SizedBox(height: 30),
             Center(
               child: ElevatedButton(
-                onPressed: () {},
-                // onPressed: () async {
-                //   String Id = randomAlphaNumeric(10);
-                //   Map<String, dynamic> employeeInfoMap = {
-                //     'name': nameController.text,
-                //     'age': ageController.text,
-                //     'id': Id,
-                //     'location': locationController.text,
-                //   };
-                //   await DatabaseMethods()
-                //       .addEmployeeDetails(employeeInfoMap, Id)
-                //       .then((value) {
-                //     Fluttertoast.showToast(
-                //         msg: "Empoyee Details has been uploaded Successfully",
-                //         toastLength: Toast.LENGTH_SHORT,
-                //         gravity: ToastGravity.CENTER,
-                //         timeInSecForIosWeb: 1,
-                //         backgroundColor: Colors.red,
-                //         textColor: Colors.white,
-                //         fontSize: 16.0);
-                //   });
-                // },
+                // onPressed: () {},
+                onPressed: () async {
+                  String Id = randomAlphaNumeric(10);
+                  Map<String, dynamic> employeeInfoMap = {
+                    'name': nameController.text,
+                    'age': ageController.text,
+                    'id': Id,
+                    'location': locationController.text,
+                  };
+                  await DatabaseMethods()
+                      .addEmployeeDetails(employeeInfoMap, Id)
+                      .then((value) {
+                    Fluttertoast.showToast(
+                        msg: "Empoyee Details has been uploaded Successfully",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  });
+                },
                 child: Text('Add',
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
